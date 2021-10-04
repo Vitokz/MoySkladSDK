@@ -1,54 +1,49 @@
 package entity
 
-import (
-	"github.com/Vitokz/MoySkladSDK/models/general"
-	"time"
-)
-
 //Product Товар
 type Product struct {
-	Meta                *general.Meta       `json:"meta"`                          // Метаданные Товара
-	Id                  string              `json:"id"`                            // ID Товара (Только для чтения)
-	AccountId           string              `json:"accountId"`                     // ID учетной записи (Только для чтения)
-	Owner               *Employee           `json:"owner"`                         // Метаданные владельца (Сотрудника)
-	Shared              bool                `json:"shared"`                        // Общий доступ
-	Group               *Group              `json:"group"`                         // Метаданные отдела сотрудника
-	SyncId              string              `json:"syncId,omitempty"`              // ID синхронизации
-	Updated             time.Time           `json:"updated"`                       // Момент последнего обновления сущности (Только для чтения)
-	Name                string              `json:"name"`                          // Наименование Товара
-	Description         string              `json:"description,omitempty"`         // Описание Товара
-	Code                string              `json:"code"`                          // Код Товара
-	ExternalCode        string              `json:"externalCode"`                  // Внешний код Товара
-	Archived            bool                `json:"archived"`                      // Добавлен ли Товар в архив
-	PathName            string              `json:"pathName"`                      // Наименование группы, в которую входит Товар (Только для чтения)
-	Vat                 int                 `json:"vat,omitempty"`                 // НДС %
-	VatEnabled          bool                `json:"vatEnabled,omitempty"`          // Включен ли НДС для группы
-	UseParentVat        bool                `json:"useParentVat,omitempty"`        // Используется ли ставка НДС родительской группы
-	EffectiveVat        int                 `json:"effectiveVat,omitempty"`        // Реальный НДС % (Только для чтения)
-	EffectiveVatEnabled int                 `json:"effectiveVatEnabled,omitempty"` // Дополнительный признак для определения разграничения реального НДС
-	ProductFolder       *ProductFolder      `json:"productFolder,omitempty"`       // Метаданные группы Товара
-	Uom                 *general.Uom        `json:"uom,omitempty"`                 // Единицы измерения
-	Images              *Images             `json:"images,omitempty"`              // Изображения
-	MinPrice            *general.MinPrice   `json:"minPrice,omitempty"`            // Минимальная цена
-	SalePrices          []general.SalePrice `json:"salePrices,omitempty"`          // Цены продажи
-	BuyPrice            *general.BuyPrice   `json:"buyPrice,omitempty"`            // Закупочная цена
-	Supplier            *Counterparty       `json:"supplier,omitempty"`            // Метаданные контрагента-поставщика
-	Attributes          []general.Attribute `json:"attributes,omitempty"`          // Коллекция доп. полей
-	Country             *Country            `json:"country,omitempty"`             // Метаданные Страны
-	Article             string              `json:"article,omitempty"`             // Артикул
-	Weight              float64             `json:"weight,omitempty"`              // Вес
-	Volume              float64             `json:"volume,omitempty"`              // Объем
-	Packs               []Pack              `json:"packs,omitempty"`               // Упаковки Товара
-	Alcoholic           Alcoholic           `json:"alcoholic,omitempty"`           // Объект, содержащий поля алкогольной продукции
-	VariantsCount       int                 `json:"variantsCount,omitempty"`       // Количество модификаций у данного товара (Только для чтения)
-	MinimumBalance      int                 `json:"minimumBalance,omitempty"`      // Неснижаемый остаток
-	IsSerialTrackable   bool                `json:"isSerialTrackable,omitempty"`   // Учет по серийным номерам. Не может быть указан вместе с alcoholic и weighed
-	Things              []string            `json:"things,omitempty"`              // Серийные номера
-	Barcodes            []general.Barcode   `json:"barcodes,omitempty"`            // Штрихкоды
-	DiscountProhibited  bool                `json:"discountProhibited,omitempty"`  // Признак запрета скидок
-	Tnved               string              `json:"tnved,omitempty"`               // Код ТН ВЭД
-	PartialDisposal     bool                `json:"partialDisposal,omitempty"`     // Управление состоянием частичного выбытия маркированного товара. "true" возможность включена
-	TrackingType        string              `json:"trackingType,omitempty"`        // Тип маркируемой продукции
+	Meta                *Meta          `json:"meta,omitempty"`                // Метаданные Товара
+	Id                  string         `json:"id,omitempty"`                  // ID Товара (Только для чтения)
+	AccountId           string         `json:"accountId,omitempty"`           // ID учетной записи (Только для чтения)
+	Owner               *Employee      `json:"owner,omitempty"`               // Метаданные владельца (Сотрудника)
+	Shared              bool           `json:"shared,omitempty"`              // Общий доступ
+	Group               *Group         `json:"group,omitempty"`               // Метаданные отдела сотрудника
+	SyncId              string         `json:"syncId,omitempty"`              // ID синхронизации
+	Updated             string         `json:"updated,omitempty"`             // Момент последнего обновления сущности (Только для чтения)
+	Name                string         `json:"name,omitempty"`                // Наименование Товара
+	Description         string         `json:"description,omitempty"`         // Описание Товара
+	Code                string         `json:"code,omitempty"`                // Код Товара
+	ExternalCode        string         `json:"externalCode,omitempty"`        // Внешний код Товара
+	Archived            bool           `json:"archived,omitempty"`            // Добавлен ли Товар в архив
+	PathName            string         `json:"pathName,omitempty"`            // Наименование группы, в которую входит Товар (Только для чтения)
+	Vat                 int            `json:"vat,omitempty"`                 // НДС %
+	VatEnabled          bool           `json:"vatEnabled,omitempty"`          // Включен ли НДС для группы
+	UseParentVat        bool           `json:"useParentVat,omitempty"`        // Используется ли ставка НДС родительской группы
+	EffectiveVat        int            `json:"effectiveVat,omitempty"`        // Реальный НДС % (Только для чтения)
+	EffectiveVatEnabled int            `json:"effectiveVatEnabled,omitempty"` // Дополнительный признак для определения разграничения реального НДС
+	ProductFolder       *ProductFolder `json:"productFolder,omitempty"`       // Метаданные группы Товара
+	Uom                 *Uom           `json:"uom,omitempty"`                 // Единицы измерения
+	Images              *Images        `json:"images,omitempty"`              // Изображения
+	MinPrice            *MinPrice      `json:"minPrice,omitempty"`            // Минимальная цена
+	SalePrices          []SalePrice    `json:"salePrices,omitempty"`          // Цены продажи
+	BuyPrice            *BuyPrice      `json:"buyPrice,omitempty"`            // Закупочная цена
+	Supplier            *Counterparty  `json:"supplier,omitempty"`            // Метаданные контрагента-поставщика
+	Attributes          []Attribute    `json:"attributes,omitempty"`          // Коллекция доп. полей
+	Country             *Country       `json:"country,omitempty"`             // Метаданные Страны
+	Article             string         `json:"article,omitempty"`             // Артикул
+	Weight              float64        `json:"weight,omitempty"`              // Вес
+	Volume              float64        `json:"volume,omitempty"`              // Объем
+	Packs               []Pack         `json:"packs,omitempty"`               // Упаковки Товара
+	Alcoholic           *Alcoholic     `json:"alcoholic,omitempty"`           // Объект, содержащий поля алкогольной продукции
+	VariantsCount       int            `json:"variantsCount,omitempty"`       // Количество модификаций у данного товара (Только для чтения)
+	MinimumBalance      int            `json:"minimumBalance,omitempty"`      // Неснижаемый остаток
+	IsSerialTrackable   bool           `json:"isSerialTrackable,omitempty"`   // Учет по серийным номерам. Не может быть указан вместе с alcoholic и weighed
+	Things              []string       `json:"things,omitempty"`              // Серийные номера
+	Barcodes            []Barcode      `json:"barcodes,omitempty"`            // Штрихкоды
+	DiscountProhibited  bool           `json:"discountProhibited,omitempty"`  // Признак запрета скидок
+	Tnved               string         `json:"tnved,omitempty"`               // Код ТН ВЭД
+	PartialDisposal     bool           `json:"partialDisposal,omitempty"`     // Управление состоянием частичного выбытия маркированного товара. "true" возможность включена
+	TrackingType        string         `json:"trackingType,omitempty"`        // Тип маркируемой продукции
 	// --
 	// Значения поля trackingType.
 	// NOT_TRACKED	Без маркировки
@@ -134,12 +129,12 @@ type Product struct {
 	// 2400002886806	набор гигиенической одежды для посетителей
 	// 2400002886707	комбинезон гигиенический для посетителей
 	// --
-	Files []general.File `json:"files,omitempty"` // Массив метаданных Файлов (Максимальное количество файлов - 100)
+	Files File `json:"files,omitempty"` // Массив метаданных Файлов (Максимальное количество файлов - 100)
 }
 
 // ProductFolder Группа Товаров
 type ProductFolder struct {
-	Meta                *general.Meta  `json:"meta,omitempty"`                // Метаданные Группы Товара (Только для чтения)
+	Meta                *Meta          `json:"meta,omitempty"`                // Метаданные Группы Товара (Только для чтения)
 	ID                  string         `json:"id,omitempty"`                  // ID Группы товаров (Только для чтения)
 	AccountID           string         `json:"accountId,omitempty"`           // ID учетной записи (Только для чтения)
 	Owner               *Employee      `json:"owner,omitempty"`               // Метаданные владельца (Сотрудника)
@@ -172,10 +167,10 @@ type ProductFolder struct {
 }
 
 type Pack struct {
-	ID       string            `json:"id"`                 // ID упаковки товара (Только для чтения)
-	Uom      *general.Uom      `json:"uom"`                // Метаданные единиц измерения
-	Quantity int               `json:"quantity"`           // Количество Товаров в упаковке данного вида
-	Barcodes []general.Barcode `json:"barcodes,omitempty"` // Массив штрихкодов упаковок товаров
+	ID       string    `json:"id"`                 // ID упаковки товара (Только для чтения)
+	Uom      *Uom      `json:"uom"`                // Метаданные единиц измерения
+	Quantity int       `json:"quantity"`           // Количество Товаров в упаковке данного вида
+	Barcodes []Barcode `json:"barcodes,omitempty"` // Массив штрихкодов упаковок товаров
 }
 
 type Alcoholic struct {

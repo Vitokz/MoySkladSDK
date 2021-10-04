@@ -1,7 +1,11 @@
-package general
+package entity
+
+type Errors struct {
+	Errors []err `json:"errors"`
+}
 
 //Error ошибка
-type Error struct {
+type err struct {
 	Error        string `json:"error"`        // Заголовок ошибки
 	Parameter    string `json:"parameter"`    // Параметр, на котором произошла ошибка
 	Code         int    `json:"code"`         // Код ошибки

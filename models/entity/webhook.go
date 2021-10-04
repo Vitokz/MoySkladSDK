@@ -1,4 +1,4 @@
-package general
+package entity
 
 const (
 	Delete    WebHookActionType = "DELETE"

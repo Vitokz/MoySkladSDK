@@ -1,27 +1,22 @@
-package general
-
-import (
-	"github.com/Vitokz/MoySkladSDK/models/entity"
-	"time"
-)
+package entity
 
 // MinPrice Цена
 type MinPrice struct {
-	Value    float64          `json:"value,omitempty"`    // Значение цены
-	Currency *entity.Currency `json:"currency,omitempty"` // Ссылка на валюту в формате Метаданных
+	Value    float64   `json:"value,omitempty"`    // Значение цены
+	Currency *Currency `json:"currency,omitempty"` // Ссылка на валюту в формате Метаданных
 }
 
 // SalePrice Цена продажи
 type SalePrice struct {
-	Value     float64          `json:"value,omitempty"`     // Значение цены
-	Currency  *entity.Currency `json:"currency,omitempty"`  // Ссылка на валюту в формате
-	PriceType *PriceType       `json:"priceType,omitempty"` // Тип цены
+	Value     float64    `json:"value,omitempty"`     // Значение цены
+	Currency  *Currency  `json:"currency,omitempty"`  // Ссылка на валюту в формате
+	PriceType *PriceType `json:"priceType,omitempty"` // Тип цены
 }
 
 // BuyPrice Закупочная цена
 type BuyPrice struct {
-	Value    float64          `json:"value,omitempty"`    // Значение цены
-	Currency *entity.Currency `json:"currency,omitempty"` // Ссылка на валюту в формате
+	Value    float64   `json:"value,omitempty"`    // Значение цены
+	Currency *Currency `json:"currency,omitempty"` // Ссылка на валюту в формате
 }
 
 // Barcode Штрихкоды
@@ -35,17 +30,17 @@ type Barcode struct {
 
 //Uom Единица измерения
 type Uom struct {
-	Meta         *Meta            `json:"meta,omitempty"`         // Метаданные
-	ID           string           `json:"id,omitempty"`           // ID Единиицы измерения
-	AccountID    string           `json:"accountId,omitempty"`    // ID учетной записи
-	Owner        *entity.Employee `json:"owner,omitempty"`        // Владелец
-	Shared       bool             `json:"shared,omitempty"`       // Общий доступ
-	Group        *entity.Group    `json:"group,omitempty"`        // Отдел сотрудника
-	Updated      time.Time        `json:"updated,omitempty"`      // Момент последнего обновления
-	Name         string           `json:"name,omitempty"`         // Наимнование единицы измерения
-	Description  string           `json:"description,omitempty"`  // Описание единицы измерения
-	Code         string           `json:"code,omitempty"`         // Код единицы измерения
-	ExternalCode string           `json:"externalCode,omitempty"` // Внешний код Единицы измерения
+	Meta         *Meta     `json:"meta,omitempty"`         // Метаданные
+	ID           string    `json:"id,omitempty"`           // ID Единиицы измерения
+	AccountID    string    `json:"accountId,omitempty"`    // ID учетной записи
+	Owner        *Employee `json:"owner,omitempty"`        // Владелец
+	Shared       bool      `json:"shared,omitempty"`       // Общий доступ
+	Group        *Group    `json:"group,omitempty"`        // Отдел сотрудника
+	Updated      string    `json:"updated,omitempty"`      // Момент последнего обновления
+	Name         string    `json:"name,omitempty"`         // Наимнование единицы измерения
+	Description  string    `json:"description,omitempty"`  // Описание единицы измерения
+	Code         string    `json:"code,omitempty"`         // Код единицы измерения
+	ExternalCode string    `json:"externalCode,omitempty"` // Внешний код Единицы измерения
 }
 
 //PriceType Тип цены
@@ -85,11 +80,11 @@ type Meta struct {
 
 // Cashier Кассир
 type Cashier struct {
-	Meta        *Meta               `json:"meta"`        // Метаданные Кассира (Только для чтения)
-	ID          string              `json:"id"`          // ID Сотрудника (Только для чтения)
-	AccountID   string              `json:"accountId"`   // ID учетной записи (Только для чтения)
-	Employee    *entity.Employee    `json:"employee"`    // Метаданные сотрудника, которого представляет собой кассир
-	RetailStore *entity.RetailStore `json:"retailStore"` // Метаданные точки продаж, к которой прикреплен кассир
+	Meta        *Meta        `json:"meta"`        // Метаданные Кассира (Только для чтения)
+	ID          string       `json:"id"`          // ID Сотрудника (Только для чтения)
+	AccountID   string       `json:"accountId"`   // ID учетной записи (Только для чтения)
+	Employee    *Employee    `json:"employee"`    // Метаданные сотрудника, которого представляет собой кассир
+	RetailStore *RetailStore `json:"retailStore"` // Метаданные точки продаж, к которой прикреплен кассир
 }
 
 // EmbeddedTemplate Шаблон печатной формы
@@ -99,4 +94,11 @@ type EmbeddedTemplate struct {
 	Name    string `json:"name"`    // Наименование шаблона
 	Type    string `json:"type"`    // Тип шаблона (entity - документ)
 	Content string `json:"content"` // Ссылка на скачивание
+}
+
+// ListResponse Структура для ответа в виде списка сущностей
+type ListResponse struct {
+	Meta    *Meta                    `json:"meta"`    // Метаданные
+	Context Meta                     `json:"context"` // Информация о сотруднике сделавшем запрос
+	Rows    []map[string]interface{} `json:"rows"`    // Массив сущностей, интерфейс тут для того чтобы не захламлять код подобными структурами для каждой сущности
 }

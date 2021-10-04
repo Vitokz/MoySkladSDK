@@ -1,10 +1,8 @@
 package entity
 
-import "github.com/Vitokz/MoySkladSDK/models/general"
-
 //Currency Валюта
 type Currency struct {
-	Meta           *general.Meta `json:"meta,omitempty"`           // Метаданные
+	Meta           *Meta         `json:"meta,omitempty"`           // Метаданные
 	Id             string        `json:"id,omitempty"`             // ID валюты
 	Name           string        `json:"name,omitempty"`           // Наименование валюты
 	FullName       string        `json:"fullName,omitempty"`       // Полное наименование валюты
